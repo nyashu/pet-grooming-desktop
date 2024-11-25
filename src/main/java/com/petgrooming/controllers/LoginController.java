@@ -6,12 +6,14 @@ import com.petgrooming.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -65,6 +67,13 @@ public class LoginController {
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Dashboard - " + user.getRole());
+            stage.setMaximized(true);
+            stage.show();
+            
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+            stage.setWidth(screenBounds.getWidth());
+            stage.setHeight(screenBounds.getHeight());
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

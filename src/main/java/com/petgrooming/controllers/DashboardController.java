@@ -1,7 +1,12 @@
 package com.petgrooming.controllers;
 
+import java.io.IOException;
+
 import com.petgrooming.models.User;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -60,9 +65,25 @@ public class DashboardController {
     }
     
     public void handleLogout() {
-        // Close the current stage and return to the login screen
-        Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-        stage.close();
+        try {
+            // Close the current dashboard stage
+            Stage currentStage = (Stage) btnLogout.getScene().getWindow();
+            currentStage.close();
+
+            // Load the login page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the login window
+            Stage loginStage = new Stage();
+            loginStage.setScene(new Scene(root));
+            loginStage.setTitle("Login");
+            loginStage.setMaximized(true);
+            loginStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void loadManageUsers() {
@@ -101,7 +122,7 @@ public class DashboardController {
         Alert aboutAlert = new Alert(AlertType.INFORMATION);
         aboutAlert.setTitle("About");
         aboutAlert.setHeaderText("Pet Grooming Service Application");
-        aboutAlert.setContentText("Version 1.0\nDeveloped by: Your Name\nThis application manages pet grooming services, schedules, and payments.");
+        aboutAlert.setContentText("Version 1.0\nDeveloped by: Algoma Student Team\nThis application manages pet grooming services, schedules, and payments.");
         
         // Show the dialog
         aboutAlert.showAndWait();

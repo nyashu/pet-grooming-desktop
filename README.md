@@ -55,6 +55,13 @@ mysql -u <username> -p petgroomingdb < petgroomingdb.sql
 ```
 2. Right-click on Main.java → Run As → Java Application.
 
+### **5. Test Login**
+Login credentials for testing
+```bash
+username: admin@example.com
+password: admin
+```
+
 ## **Features**
 
 The Pet Grooming Service application provides functionality based on user roles. Below are the features available for each role:
