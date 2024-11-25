@@ -1,0 +1,18 @@
+.label {
+    -fx-font-family: "Arial";
+}
+
+.text-field, .password-field {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: #cccccc;
+}
+
+.button {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}

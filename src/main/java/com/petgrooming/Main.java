@@ -1,9 +1,8 @@
-
-
 package com.petgrooming;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -11,12 +10,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load the FXML file for your login page or main screen
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
-        Scene scene = new Scene(loader.load());
-        
-        // Set the stage properties
-        primaryStage.setTitle("Pet Grooming Service");
+        Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+        Scene scene = new Scene(root, 600, 400);
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/dashboard.css").toExternalForm());
+        primaryStage.setTitle("Pet Grooming Service - Login");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

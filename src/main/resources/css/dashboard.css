@@ -1,0 +1,11 @@
+.button {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
+.button:hover {
+    -fx-background-color: #1abc9c;
+}
+.label {
+    -fx-font-family: "Arial";
+}
