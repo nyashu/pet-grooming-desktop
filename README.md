@@ -22,7 +22,15 @@ Clone the repository to your local machine:
 git clone https://github.com/nyashu/pet-grooming-desktop.git
 ```
 
-### **2. Configure the MySQL Database**
+### **2. Import the Project into Eclipse**
+1. Open Eclipse and go to File → Import → Existing Projects into Workspace.
+2. Select the cloned project folder.
+3. Add the JavaFX SDK:
+    - Go to Project → Properties → Java Build Path → Libraries → Add External JARs.
+    - Select the lib folder from your JavaFX SDK installation.
+
+
+### **3. Configure the MySQL Database**
 1. Create the database:
 ```sql
 CREATE DATABASE petgroomingdb;
@@ -33,19 +41,12 @@ CREATE DATABASE petgroomingdb;
 mysql -u <username> -p petgroomingdb < petgroomingdb.sql
 ```
 
-3. Update the Hirbernate.cfg.xml file with your MySQL credentials
+3. Update the Hibernate.cfg.xml file with your MySQL credentials
 ```sql
 <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/petgroomingdb</property>
 <property name="hibernate.connection.username">username</property>
 <property name="hibernate.connection.password">password</property>
 ```
-
-### **3. Import the Project into Eclipse**
-1. Open Eclipse and go to File → Import → Existing Projects into Workspace.
-2. Select the cloned project folder.
-3. Add the JavaFX SDK:
-    - Go to Project → Properties → Java Build Path → Libraries → Add External JARs.
-    - Select the lib folder from your JavaFX SDK installation.
 
 ### **4. Run the Application**
 1. Configure JavaFX VM Arguments: Go to Run Configurations → Arguments → VM Arguments, and add:
