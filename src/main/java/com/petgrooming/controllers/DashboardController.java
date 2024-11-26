@@ -87,9 +87,16 @@ public class DashboardController {
     }
 
     private void loadManageUsers() {
-        // Dynamically load content for managing users
-        mainContent.getChildren().clear();
-        mainContent.getChildren().add(new Label("Manage Users Content Goes Here..."));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/usermanagement.fxml"));
+            Parent manageUsersView = loader.load();
+            
+            // Set the loaded FXML in the main content area
+            mainContent.getChildren().clear();
+            mainContent.getChildren().add(manageUsersView);
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
     }
 
     private void loadAppointments() {

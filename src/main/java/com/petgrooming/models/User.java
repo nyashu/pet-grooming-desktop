@@ -1,7 +1,7 @@
 package com.petgrooming.models;
 
 public class User {
-    private int id;              // User ID
+    private int userId;              // User ID
     private String username;     // Username for login
     private String password;     // Password for login
     private String email;        // Email address
@@ -15,8 +15,8 @@ public class User {
     }
 
     // Constructor with all fields
-    public User(int id, String username, String password, String email, String fullName, String phone, String address, String role) {
-        this.id = id;
+    public User(int userId, String username, String password, String email, String fullName, String phone, String address, String role) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -28,11 +28,11 @@ public class User {
 
     // Getters and Setters
     public int getId() {
-        return id;
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -95,7 +95,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
