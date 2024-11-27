@@ -13,6 +13,11 @@ public class User {
     // Default Constructor
     public User() {
     }
+    
+    public User(int userId, String fullName) {
+        this.userId = userId;
+        this.fullName = fullName;
+    }
 
     // Constructor with all fields
     public User(int userId, String username, String password, String email, String fullName, String phone, String address, String role) {
@@ -94,14 +99,6 @@ public class User {
     // Override toString for easy debugging
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + userId +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    	 return fullName;
     }
 }

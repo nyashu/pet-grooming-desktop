@@ -100,9 +100,16 @@ public class DashboardController {
     }
 
     private void loadAppointments() {
-        // Dynamically load content for appointments
-        mainContent.getChildren().clear();
-        mainContent.getChildren().add(new Label("Appointments Content Goes Here..."));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/appointmentmanagement.fxml"));
+            Parent manageAppointmentsView = loader.load();
+            
+            // Set the loaded FXML in the main content area
+            mainContent.getChildren().clear();
+            mainContent.getChildren().add(manageAppointmentsView);
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
     }
 
     private void loadReports() {

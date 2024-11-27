@@ -16,35 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `appointmenthistory`
---
-
-DROP TABLE IF EXISTS `appointmenthistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `appointmenthistory` (
-  `HistoryID` int NOT NULL AUTO_INCREMENT,
-  `CustomerID` int NOT NULL,
-  `AppointmentID` int NOT NULL,
-  `ViewedAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`HistoryID`),
-  KEY `CustomerID` (`CustomerID`),
-  KEY `AppointmentID` (`AppointmentID`),
-  CONSTRAINT `appointmenthistory_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE,
-  CONSTRAINT `appointmenthistory_ibfk_2` FOREIGN KEY (`AppointmentID`) REFERENCES `appointments` (`AppointmentID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `appointmenthistory`
---
-
-LOCK TABLES `appointmenthistory` WRITE;
-/*!40000 ALTER TABLE `appointmenthistory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `appointmenthistory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `appointments`
 --
 
@@ -52,19 +23,18 @@ DROP TABLE IF EXISTS `appointments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointments` (
-  `AppointmentID` int NOT NULL AUTO_INCREMENT,
-  `CustomerID` int NOT NULL,
-  `GroomerID` int DEFAULT NULL,
-  `ServiceDate` datetime NOT NULL,
-  `ServiceDetails` varchar(255) DEFAULT NULL,
-  `Status` enum('Scheduled','In Progress','Completed','Canceled') DEFAULT 'Scheduled',
-  `CreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`AppointmentID`),
-  KEY `CustomerID` (`CustomerID`),
-  KEY `GroomerID` (`GroomerID`),
-  CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE,
-  CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`GroomerID`) REFERENCES `users` (`UserID`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `customerId` int NOT NULL,
+  `groomerId` int NOT NULL,
+  `appointmentDate` datetime NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Pending',
+  `remarks` text,
+  PRIMARY KEY (`id`),
+  KEY `customerId` (`customerId`),
+  KEY `groomerId` (`groomerId`),
+  CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `users` (`UserID`) ON DELETE CASCADE,
+  CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`groomerId`) REFERENCES `users` (`UserID`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,35 +43,8 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
+INSERT INTO `appointments` VALUES (2,12,2,'2024-11-30 00:00:00','Pending','trf'),(3,12,2,'2024-12-06 00:00:00','Completed','qwdw'),(4,12,2,'2024-11-23 00:00:00','Completed','yashu');
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `appointmentservices`
---
-
-DROP TABLE IF EXISTS `appointmentservices`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `appointmentservices` (
-  `AppointmentServiceID` int NOT NULL AUTO_INCREMENT,
-  `AppointmentID` int NOT NULL,
-  `ServiceID` int NOT NULL,
-  PRIMARY KEY (`AppointmentServiceID`),
-  KEY `AppointmentID` (`AppointmentID`),
-  KEY `ServiceID` (`ServiceID`),
-  CONSTRAINT `appointmentservices_ibfk_1` FOREIGN KEY (`AppointmentID`) REFERENCES `appointments` (`AppointmentID`) ON DELETE CASCADE,
-  CONSTRAINT `appointmentservices_ibfk_2` FOREIGN KEY (`ServiceID`) REFERENCES `services` (`ServiceID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `appointmentservices`
---
-
-LOCK TABLES `appointmentservices` WRITE;
-/*!40000 ALTER TABLE `appointmentservices` DISABLE KEYS */;
-/*!40000 ALTER TABLE `appointmentservices` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -130,64 +73,6 @@ CREATE TABLE `groomeravailability` (
 LOCK TABLES `groomeravailability` WRITE;
 /*!40000 ALTER TABLE `groomeravailability` DISABLE KEYS */;
 /*!40000 ALTER TABLE `groomeravailability` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `invoices`
---
-
-DROP TABLE IF EXISTS `invoices`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `invoices` (
-  `InvoiceID` int NOT NULL AUTO_INCREMENT,
-  `AppointmentID` int NOT NULL,
-  `GroomerID` int NOT NULL,
-  `Amount` decimal(10,2) NOT NULL,
-  `InvoiceDate` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`InvoiceID`),
-  KEY `AppointmentID` (`AppointmentID`),
-  KEY `GroomerID` (`GroomerID`),
-  CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`AppointmentID`) REFERENCES `appointments` (`AppointmentID`) ON DELETE CASCADE,
-  CONSTRAINT `invoices_ibfk_2` FOREIGN KEY (`GroomerID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `invoices`
---
-
-LOCK TABLES `invoices` WRITE;
-/*!40000 ALTER TABLE `invoices` DISABLE KEYS */;
-/*!40000 ALTER TABLE `invoices` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `payments`
---
-
-DROP TABLE IF EXISTS `payments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `payments` (
-  `PaymentID` int NOT NULL AUTO_INCREMENT,
-  `AppointmentID` int NOT NULL,
-  `Amount` decimal(10,2) NOT NULL,
-  `PaymentDate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `PaymentMethod` enum('Cash','Credit Card','Online') DEFAULT NULL,
-  PRIMARY KEY (`PaymentID`),
-  KEY `AppointmentID` (`AppointmentID`),
-  CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`AppointmentID`) REFERENCES `appointments` (`AppointmentID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `payments`
---
-
-LOCK TABLES `payments` WRITE;
-/*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -250,7 +135,7 @@ CREATE TABLE `users` (
   `UserID` int NOT NULL AUTO_INCREMENT,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(255) NOT NULL,
-  `Role` enum('Admin','Groomer','Customer','Staff') NOT NULL,
+  `role` varchar(50) DEFAULT NULL,
   `FullName` varchar(100) DEFAULT NULL,
   `Email` varchar(100) NOT NULL,
   `Phone` varchar(15) DEFAULT NULL,
@@ -259,7 +144,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Username` (`Username`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +153,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin_user','admin','Admin','Admin User','admin@example.com','1234567890','123 Admin Street','2024-11-24 15:41:15'),(2,'groomer_user','groomer','Groomer','John Groomer','groomer@example.com','1234567891','456 Groomer Lane','2024-11-24 15:41:15'),(3,'customer_user','customer','Customer','Jane Customer','customer@example.com','1234567892','789 Customer Blvd','2024-11-24 15:41:15'),(4,'staff_user','staff','Staff','Eve Staff','staff@example.com','1234567893','101 Staff Court','2024-11-24 15:41:15');
+INSERT INTO `users` VALUES (2,'groomer_user','groomer','Groomer','John Groomer','groomer@example.com','1234567891','456 Groomer Lane','2024-11-24 15:41:15'),(4,'staff_user','staff','Staff','Eve Staff','staff@example.com','1234567893','101 Staff Court','2024-11-24 15:41:15'),(5,'Admin Test','admin','Admin','Yashu Neupane','admin@example.com','23456788','3ergerger','2024-11-25 15:38:45'),(12,'Customer','customer','Customer','Customer Second','customer@example.com','1234567','343 variety','2024-11-26 19:34:59');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -281,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-25 11:23:44
+-- Dump completed on 2024-11-26 22:15:28

@@ -46,7 +46,7 @@ public class UserAdminController {
         tblUsers.setItems(userList);
 
         // Populate the combo box with roles
-        cmbRole.setItems(FXCollections.observableArrayList("Admin", "User", "Manager"));
+        cmbRole.setItems(FXCollections.observableArrayList("Admin", "Customer", "Staff", "Groomer"));
     }
 
     @FXML

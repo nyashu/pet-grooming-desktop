@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.petgrooming.controllers.AppointmentController">
+    <!-- Title -->
+    <top>
+        <Label text="Appointment Management" style="-fx-font-size: 24px; -fx-font-weight: bold;" alignment="CENTER" />
+    </top>
+
+    <!-- Center (Table) -->
+    <center>
+        <VBox spacing="10">
+            <TableView fx:id="tblAppointments">
+                <columns>
+                    <TableColumn text="ID" fx:id="colId" />
+                    <TableColumn text="Customer" fx:id="colCustomerId" />
+                    <TableColumn text="Groomer" fx:id="colGroomerId" />
+                    <TableColumn text="Date" fx:id="colDate" />
+                    <TableColumn text="Status" fx:id="colStatus" />
+                    <TableColumn text="Remarks" fx:id="colRemarks" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Bottom (Form) -->
+    <bottom>
+        <VBox spacing="10">
+            <GridPane hgap="10" vgap="10">
+            	<Label text="Customer:" GridPane.rowIndex="1" />
+				<ComboBox fx:id="cmbCustomer" promptText="Select Customer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				
+				<Label text="Groomer:" GridPane.rowIndex="2" />
+				<ComboBox fx:id="cmbGroomer" promptText="Select Groomer" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+                <Label text="Date:" GridPane.rowIndex="3" />
+                <DatePicker fx:id="dateAppointment" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="Status:" GridPane.rowIndex="4" />
+                <ComboBox fx:id="cmbStatus" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <Label text="Remarks:" GridPane.rowIndex="5" />
+                <TextField fx:id="txtRemarks" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Add" fx:id="btnAdd" onAction="#handleAddAppointment" />
+                <Button text="Update" fx:id="btnUpdate" onAction="#handleUpdateAppointment" />
+                <Button text="Delete" fx:id="btnDelete" onAction="#handleDeleteAppointment" />
+                <Button text="Clear" onAction="#clearForm" />
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
