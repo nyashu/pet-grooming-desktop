@@ -14,6 +14,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 600, 400);
         scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/css/dashboard.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/myprofile.css").toExternalForm());
         primaryStage.setTitle("Pet Grooming Service - Login");
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);

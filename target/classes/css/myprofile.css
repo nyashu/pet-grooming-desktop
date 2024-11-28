@@ -1,0 +1,41 @@
+/* General Container Styling */
+.myprofile-container {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 40;
+}
+
+/* Header Styling */
+.myprofile-header {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Profile Card Styling */
+.myprofile-card {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.3, 0, 0);
+}
+
+/* Label Styling */
+.myprofile-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+.myprofile-value {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Footer Styling */
+.myprofile-footer {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+    -fx-padding: 20 0 0 0;
+}

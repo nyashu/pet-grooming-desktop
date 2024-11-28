@@ -46,7 +46,8 @@ public class DashboardController {
             	btnAppointments.setVisible(true);
                 break;
             case "Customer":
-                viewHistoryButton.setVisible(true);
+//                viewHistoryButton.setVisible(true);
+            	btnAppointments.setVisible(true);
                 break;
             case "Staff":
             	btnAppointments.setVisible(true);
@@ -118,11 +119,19 @@ public class DashboardController {
         mainContent.getChildren().add(new Label("Reports Content Goes Here..."));
     }
 
+    @FXML
     private void loadProfile() {
-        // Dynamically load profile content
-        mainContent.getChildren().clear();
-        mainContent.getChildren().add(new Label("Profile Content Goes Here..."));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/profileview.fxml"));
+            Parent profilePage = loader.load();
+
+            mainContent.getChildren().clear();
+            mainContent.getChildren().add(profilePage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     
     @FXML
     private void handleExit() {

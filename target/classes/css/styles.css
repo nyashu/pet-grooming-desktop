@@ -16,3 +16,56 @@
 .button:hover {
     -fx-background-color: #45a049;
 }
+
+/* General Container Styling */
+.profile-container {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 30;
+}
+
+/* Header Styling */
+.profile-header {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10;
+}
+
+/* Separator Styling */
+.profile-separator {
+    -fx-background-color: #dcdcdc;
+    -fx-padding: 5 0 20 0;
+}
+
+/* Profile Box Styling */
+.profile-box {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20;
+    -fx-border-color: #d3d3d3;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.3, 0, 0);
+}
+
+/* Label Styling */
+.profile-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+.profile-value {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Footer Styling */
+.profile-footer {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 20;
+    -fx-background-color: #ecf0f1;
+    -fx-border-radius: 5;
+    -fx-alignment: center;
+}
+
