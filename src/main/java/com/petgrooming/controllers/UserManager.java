@@ -4,6 +4,8 @@ import com.petgrooming.models.User;
 import java.sql.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class UserManager {
 
@@ -28,11 +30,14 @@ public class UserManager {
             ps.setString(7, user.getRole());
             ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Database Error");
+            alert.setHeaderText("An error occurred while accessing the database");
+            alert.setContentText(e.getMessage()); 
+            alert.showAndWait();
         }
     }
 
-    // Get all users from the database
     public ObservableList<User> getAllUsers() {
         ObservableList<User> userList = FXCollections.observableArrayList();
         try {
